@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voucher Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../assets/admin/css/admin.css" />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Create Voucher Section -->
+    <section class="create-voucher-now py-8">
+      <div class="container mx-auto bg-white grid grid-cols-12 gap-4 p-6">
+        <!-- Cột content bên trái -->
+        <div class="col-span-12 md:col-span-4">
+          <h1 class="text-xl font-semibold">
+            Tạo ngay Voucher để tăng đơn hàng cho Shop của bạn!
+          </h1>
+          <p class="mt-2 text-gray-700">
+            Cơ hội tăng đến <span class="font-bold">43%</span> đơn hàng và
+            <span class="font-bold">28%</span> doanh thu khi tạo Voucher ưu đãi
+            cho Khách hàng.
+          </p>
+          <a
+            href="#"
+            class="mt-4 inline-block btn-color-admin text-white py-2 px-6 rounded-md"
+            >Tạo Voucher ngay!</a
+          >
+        </div>
+        <!-- Cột ảnh bên phải -->
+        <div class="col-span-12 md:col-span-8">
+          <img
+            src="../../../public/assets/admin/img/Bg-voucher.jpg"
+            alt="Voucher Image"
+            class="w-full h-auto rounded-lg"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Voucher Creation Options Section -->
+    <section class="create-voucher-options">
+      <div class="container mx-auto bg-white p-4">
+        <h2 class="text-xl font-semibold mb-4">Tạo Voucher</h2>
+        <p class="text-gray-600 mb-6">
+          Tạo Mã giảm giá dành cho Shop hoặc Mã giảm giá phù hợp với kênh và đối
+          tượng người mua.
+          <a href="#" class=".btn-color-admin">Tìm hiểu thêm</a>
+        </p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-white p-4 rounded-md shadow">
+            <h3 class="text-lg font-semibold">Voucher toàn sàn</h3>
+            <p class="text-gray-600 mt-1 mb-3">
+              Voucher áp dụng cho tất cả sản phẩm thuộc sàn ModelWorld.
+            </p>
+            <button class="btn-color-admin text-white py-2 px-4 rounded">
+              Tạo
+            </button>
+          </div>
+          <div class="bg-white p-4 rounded-md shadow">
+            <h3 class="text-lg font-semibold">Voucher mặc hàng</h3>
+            <p class="text-gray-600 mt-1 mb-3">
+              Voucher chỉ áp dụng cho nhóm sản phẩm nhất định thuộc sàn
+              ModelWorld.
+            </p>
+            <button class="btn-color-admin text-white py-2 px-4 rounded">
+              Tạo
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Voucher List Section -->
+    <section
+      id="voucher-modelworld"
+      class="list-voucher-san rounded-md shadow mt-8"
+    >
+      <div class="container bg-white mx-auto">
+        <h2 class="text-xl font-semibold mb-4">
+          Danh sách mã giảm giá phát hành bởi ModelWorld
+        </h2>
+        <div class="flex justify-between items-center mb-4">
+          <div class="flex space-x-4">
+            <button
+              onclick="showTab('modelworld', 'all')"
+              class="tab-button active"
+            >
+              Tất cả
+            </button>
+            <button
+              onclick="showTab('modelworld', 'ongoing')"
+              class="tab-button"
+            >
+              Đang diễn ra
+            </button>
+            <button
+              onclick="showTab('modelworld', 'upcoming')"
+              class="tab-button"
+            >
+              Sắp diễn ra
+            </button>
+            <button
+              onclick="showTab('modelworld', 'expired')"
+              class="tab-button"
+            >
+              Đã kết thúc
+            </button>
+          </div>
+        </div>
+
+        <div id="modelworld-all" class="tab-content">
+          <div class="overflow-auto">
+            <table class="min-w-full bg-white border">
+              <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                  <th class="py-3 px-4 border">Tên Voucher / Mã Voucher</th>
+                  <th class="py-3 px-4 border">Loại mã</th>
+                  <th class="py-3 px-4 border">Sản phẩm áp dụng</th>
+                  <th class="py-3 px-4 border">Người mua mục tiêu</th>
+                  <th class="py-3 px-4 border">Giảm giá</th>
+                  <th class="py-3 px-4 border">Tổng lượt sử dụng</th>
+                  <th class="py-3 px-4 border">Đã dùng</th>
+                  <th class="py-3 px-4 border">Thời gian lưu Mã giảm giá</th>
+                  <th class="py-3 px-4 border">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody class="text-center text-gray-600">
+                <tr>
+                  <td class="py-4 px-4 border" colspan="9">
+                    Không có Mã giảm giá nào
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="modelworld-ongoing" class="tab-content hidden">
+          <div class="overflow-auto">
+            <table class="min-w-full bg-white border">
+              <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                  <th class="py-3 px-4 border">Tên Voucher / Mã Voucher</th>
+                  <th class="py-3 px-4 border">Loại mã</th>
+                  <th class="py-3 px-4 border">Sản phẩm áp dụng</th>
+                  <th class="py-3 px-4 border">Người mua mục tiêu</th>
+                  <th class="py-3 px-4 border">Giảm giá</th>
+                  <th class="py-3 px-4 border">Tổng lượt sử dụng</th>
+                  <th class="py-3 px-4 border">Đã dùng</th>
+                  <th class="py-3 px-4 border">Thời gian lưu Mã giảm giá</th>
+                  <th class="py-3 px-4 border">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody class="text-center text-gray-600">
+                <tr>
+                  <td class="py-4 px-4 border" colspan="9">
+                    Không có Mã giảm giá nào
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="modelworld-upcoming" class="tab-content hidden">
+          <div class="overflow-auto">
+            <table class="min-w-full bg-white border">
+              <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                  <th class="py-3 px-4 border">Tên Voucher / Mã Voucher</th>
+                  <th class="py-3 px-4 border">Loại mã</th>
+                  <th class="py-3 px-4 border">Sản phẩm áp dụng</th>
+                  <th class="py-3 px-4 border">Người mua mục tiêu</th>
+                  <th class="py-3 px-4 border">Giảm giá</th>
+                  <th class="py-3 px-4 border">Tổng lượt sử dụng</th>
+                  <th class="py-3 px-4 border">Đã dùng</th>
+                  <th class="py-3 px-4 border">Thời gian lưu Mã giảm giá</th>
+                  <th class="py-3 px-4 border">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody class="text-center text-gray-600">
+                <tr>
+                  <td class="py-4 px-4 border" colspan="9">
+                    Không có Mã giảm giá nào
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="modelworld-expired" class="tab-content hidden">
+          <div class="overflow-auto">
+            <table class="min-w-full bg-white border">
+              <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                  <th class="py-3 px-4 border">Tên Voucher / Mã Voucher</th>
+                  <th class="py-3 px-4 border">Loại mã</th>
+                  <th class="py-3 px-4 border">Sản phẩm áp dụng</th>
+                  <th class="py-3 px-4 border">Người mua mục tiêu</th>
+                  <th class="py-3 px-4 border">Giảm giá</th>
+                  <th class="py-3 px-4 border">Tổng lượt sử dụng</th>
+                  <th class="py-3 px-4 border">Đã dùng</th>
+                  <th class="py-3 px-4 border">Thời gian lưu Mã giảm giá</th>
+                  <th class="py-3 px-4 border">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody class="text-center text-gray-600">
+                <tr>
+                  <td class="py-4 px-4 border" colspan="9">
+                    Không có Mã giảm giá nào
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="voucher-shop" class="list-voucher-shop rounded-md shadow mt-8">
+      <div class="container bg-white mx-auto">
+        <h2 class="text-xl font-semibold mb-4">
+          Danh sách mã giảm giá phát hành bởi Shop
+        </h2>
+        <div class="flex justify-between items-center mb-4">
+          <div class="flex space-x-4">
+            <button onclick="showTab('shop', 'all')" class="tab-button active">
+              Tất cả
+            </button>
+            <button onclick="showTab('shop', 'ongoing')" class="tab-button">
+              Đang diễn ra
+            </button>
+            <button onclick="showTab('shop', 'upcoming')" class="tab-button">
+              Sắp diễn ra
+            </button>
+            <button onclick="showTab('shop', 'expired')" class="tab-button">
+              Đã kết thúc
+            </button>
+          </div>
+        </div>
+
+        <div id="shop-all" class="tab-content">
+          <div class="overflow-auto">
+            <table class="min-w-full bg-white border">
+              <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                  <th class="py-3 px-4 border">Tên Voucher / Mã Voucher</th>
+                  <th class="py-3 px-4 border">Loại mã</th>
+                  <th class="py-3 px-4 border">Sản phẩm áp dụng</th>
+                  <th class="py-3 px-4 border">Người mua mục tiêu</th>
+                  <th class="py-3 px-4 border">Giảm giá</th>
+                  <th class="py-3 px-4 border">Tổng lượt sử dụng</th>
+                  <th class="py-3 px-4 border">Đã dùng</th>
+                  <th class="py-3 px-4 border">Thời gian lưu Mã giảm giá</th>
+                  <th class="py-3 px-4 border">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody class="text-center text-gray-600">
+                <tr>
+                  <td class="py-4 px-4 border" colspan="9">
+                    Không có Mã giảm giá nào
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="shop-ongoing" class="tab-content hidden">
+          <div class="overflow-auto">
+            <table class="min-w-full bg-white border">
+              <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                  <th class="py-3 px-4 border">Tên Voucher / Mã Voucher</th>
+                  <th class="py-3 px-4 border">Loại mã</th>
+                  <th class="py-3 px-4 border">Sản phẩm áp dụng</th>
+                  <th class="py-3 px-4 border">Người mua mục tiêu</th>
+                  <th class="py-3 px-4 border">Giảm giá</th>
+                  <th class="py-3 px-4 border">Tổng lượt sử dụng</th>
+                  <th class="py-3 px-4 border">Đã dùng</th>
+                  <th class="py-3 px-4 border">Thời gian lưu Mã giảm giá</th>
+                  <th class="py-3 px-4 border">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody class="text-center text-gray-600">
+                <tr>
+                  <td class="py-4 px-4 border" colspan="9">
+                    Không có Mã giảm giá nào
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="shop-upcoming" class="tab-content hidden">
+          <div class="overflow-auto">
+            <table class="min-w-full bg-white border">
+              <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                  <th class="py-3 px-4 border">Tên Voucher / Mã Voucher</th>
+                  <th class="py-3 px-4 border">Loại mã</th>
+                  <th class="py-3 px-4 border">Sản phẩm áp dụng</th>
+                  <th class="py-3 px-4 border">Người mua mục tiêu</th>
+                  <th class="py-3 px-4 border">Giảm giá</th>
+                  <th class="py-3 px-4 border">Tổng lượt sử dụng</th>
+                  <th class="py-3 px-4 border">Đã dùng</th>
+                  <th class="py-3 px-4 border">Thời gian lưu Mã giảm giá</th>
+                  <th class="py-3 px-4 border">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody class="text-center text-gray-600">
+                <tr>
+                  <td class="py-4 px-4 border" colspan="9">
+                    Không có Mã giảm giá nào
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="shop-expired" class="tab-content hidden">
+          <div class="overflow-auto">
+            <table class="min-w-full bg-white border">
+              <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                  <th class="py-3 px-4 border">Tên Voucher / Mã Voucher</th>
+                  <th class="py-3 px-4 border">Loại mã</th>
+                  <th class="py-3 px-4 border">Sản phẩm áp dụng</th>
+                  <th class="py-3 px-4 border">Người mua mục tiêu</th>
+                  <th class="py-3 px-4 border">Giảm giá</th>
+                  <th class="py-3 px-4 border">Tổng lượt sử dụng</th>
+                  <th class="py-3 px-4 border">Đã dùng</th>
+                  <th class="py-3 px-4 border">Thời gian lưu Mã giảm giá</th>
+                  <th class="py-3 px-4 border">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody class="text-center text-gray-600">
+                <tr>
+                  <td class="py-4 px-4 border" colspan="9">
+                    Không có Mã giảm giá nào
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script>
+    // JavaScript để quản lý các tab
+    function showTab(section, tab) {
+      // Xóa trạng thái active của tất cả các tab button
+      const tabButtons = document.querySelectorAll(
+        `#voucher-${section} .tab-button`
+      );
+      tabButtons.forEach((button) => button.classList.remove("active"));
+
+      // Đặt trạng thái active cho nút tab được nhấn
+      document
+        .querySelector(
+          `#voucher-${section} .tab-button[onclick="showTab('${section}', '${tab}')"]`
+        )
+        .classList.add("active");
+
+      // Ẩn tất cả nội dung của các tab
+      const tabContents = document.querySelectorAll(
+        `#voucher-${section} .tab-content`
+      );
+      tabContents.forEach((content) => content.classList.add("hidden"));
+
+      // Hiển thị nội dung của tab đã chọn
+      document.getElementById(`${section}-${tab}`).classList.remove("hidden");
+    }
+  </script>
+</html>
